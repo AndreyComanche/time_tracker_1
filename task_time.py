@@ -95,5 +95,5 @@ class TaskTime(QtWidgets.QGroupBox):
     def start(self):
         self.__pbar_active = True
         self.cb.setEnabled(False)
-        self.pbar.reset()
         self.pbar.setRange(0, int(self.value * 60) - 1)
+        self.pbar.reset()
