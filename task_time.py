@@ -44,15 +44,11 @@ class TaskTime(QtWidgets.QGroupBox):
         self.cb.setSizeAdjustPolicy(QtWidgets.QComboBox.AdjustToContents)
         self.cb.setInsertPolicy(QtWidgets.QComboBox.InsertAtTop)
 
-    def init_pb(self, on_start=True):
-        if on_start:
-            self.pbar.setMinimumWidth(200)
-            self.pbar.setMaximumHeight(16)
-            font = QtGui.QFont('Consolas', 16, 50)
-            self.pbar.setFont(font)
-        self.stop()
-        self.pbar.reset()
-        self.pbar.setRange(0, int(self.value * 60) - 1)
+    def init_pb(self):
+        self.pbar.setMinimumWidth(200)
+        self.pbar.setMaximumHeight(16)
+        font = QtGui.QFont('Consolas', 16, 50)
+        self.pbar.setFont(font)
 
     def timerEvent(self, evt):
         if self.__pbar_active:
@@ -63,7 +59,6 @@ class TaskTime(QtWidgets.QGroupBox):
                 seconds = seconds if len(seconds) > 1 else f'0{seconds}'
                 self.pbar.setFormat(f'{minutes}:{seconds}')
             else:
-                self.cb.setEnabled(True)
                 self.endTask.emit()
 
     def event(self, evt):
@@ -92,6 +87,7 @@ class TaskTime(QtWidgets.QGroupBox):
 
     @QtCore.pyqtSlot()
     def stop(self):
+        self.pbar.reset()
         self.cb.setEnabled(True)
         self.__pbar_active = False
 
@@ -99,3 +95,5 @@ class TaskTime(QtWidgets.QGroupBox):
     def start(self):
         self.__pbar_active = True
         self.cb.setEnabled(False)
+        self.pbar.reset()
+        self.pbar.setRange(0, int(self.value * 60) - 1)

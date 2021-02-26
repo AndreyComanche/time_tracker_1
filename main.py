@@ -67,17 +67,16 @@ class TrackerWindow(QtWidgets.QMainWindow):
 
         self.begin_task.connect(lambda: self.btn_start.setText('Complete'))
         self.begin_task.connect(lambda: self.btn_del.setText('Cancel'))
-        self.begin_task.connect(lambda: self.task_time.init_pb(on_start=False))
         self.begin_task.connect(self.task_time.start)
         self.begin_task.connect(self.clock.start)
         self.begin_task.connect(self.b_screening.stop)
         self.begin_task.connect(self.task_check.stop)
 
-        self.complete_task.connect(lambda: self.task_time.init_pb(on_start=False))
+        self.complete_task.connect(self.task_time.stop)
         self.complete_task.connect(lambda: self.btn_start.setText('Start'))
         self.complete_task.connect(lambda: self.btn_del.setText('Delete'))
 
-        self.cancel_task.connect(lambda: self.task_time.init_pb(on_start=False))
+        self.cancel_task.connect(self.task_time.stop)
         self.cancel_task.connect(lambda: self.btn_start.setText('Start'))
         self.cancel_task.connect(lambda: self.btn_del.setText('Delete'))
 
