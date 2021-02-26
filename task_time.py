@@ -50,7 +50,7 @@ class TaskTime(QtWidgets.QGroupBox):
             self.pbar.setMaximumHeight(16)
             font = QtGui.QFont('Consolas', 16, 50)
             self.pbar.setFont(font)
-        self.__pbar_active = False
+        self.stop()
         self.pbar.reset()
         self.pbar.setRange(0, int(self.value * 60) - 1)
 
@@ -63,6 +63,7 @@ class TaskTime(QtWidgets.QGroupBox):
                 seconds = seconds if len(seconds) > 1 else f'0{seconds}'
                 self.pbar.setFormat(f'{minutes}:{seconds}')
             else:
+                self.cb.setEnabled(True)
                 self.endTask.emit()
 
     def event(self, evt):
@@ -91,8 +92,10 @@ class TaskTime(QtWidgets.QGroupBox):
 
     @QtCore.pyqtSlot()
     def stop(self):
+        self.cb.setEnabled(True)
         self.__pbar_active = False
 
     @QtCore.pyqtSlot()
     def start(self):
         self.__pbar_active = True
+        self.cb.setEnabled(False)
