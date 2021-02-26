@@ -1,0 +1,5 @@
+PyQt5~=5.15.2
+PyAutoGUI~=0.9.52
+keyring~=21.7.0
+Pillow~=8.0.1
+pytz~=2020.5
