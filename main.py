@@ -67,8 +67,7 @@ class TrackerWindow(QtWidgets.QMainWindow):
 
         self.begin_task.connect(lambda: self.btn_start.setText('Complete'))
         self.begin_task.connect(lambda: self.btn_del.setText('Cancel'))
-        self.begin_task.connect(self.task_time.start)
-        self.begin_task.connect(self.clock.start)
+        self.begin_task.connect(lambda: self.task_time.start(self.clock.get_time()))
         self.begin_task.connect(self.b_screening.stop)
         self.begin_task.connect(self.task_check.stop)
 
@@ -107,7 +106,7 @@ class TrackerWindow(QtWidgets.QMainWindow):
     def add_task(self):
         self.complete_task.emit()
         self.db.insert(
-            self.clock.start_time,
+            self.task_time.start_time,
             self.clock.get_time(),
             self.task_time.value
         )

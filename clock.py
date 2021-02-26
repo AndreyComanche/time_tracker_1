@@ -31,9 +31,6 @@ class ClockTable(QtWidgets.QGroupBox):
         self.date_label.setText(now.strftime('%A, %B %d'))
         self.time_label.setText(now.strftime('%H:%M:%S'))
 
-    def start(self):
-        self.start_time = self.get_time()
-
     def get_time(self):
         return datetime.now(self.work_tz)
 

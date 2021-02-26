@@ -12,6 +12,7 @@ class TaskTime(QtWidgets.QGroupBox):
         self.setFont(font)
         self.setTitle(text)
         self.value = Decimal('1.00')
+        self.start_time = ''
         self.cb = QtWidgets.QComboBox(self)
         self.cb_values = []
         self.pbar = QtWidgets.QProgressBar(self)
@@ -92,7 +93,8 @@ class TaskTime(QtWidgets.QGroupBox):
         self.__pbar_active = False
 
     @QtCore.pyqtSlot()
-    def start(self):
+    def start(self, start_time):
+        self.start_time = start_time
         self.__pbar_active = True
         self.cb.setEnabled(False)
         self.pbar.setRange(0, int(self.value * 60) - 1)
