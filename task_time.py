@@ -28,9 +28,10 @@ class TaskTime(QtWidgets.QGroupBox):
 
     def init_cb(self):
         self.cb_values = [
-            '1.00', '1.50', '2.00', '2.50', '3.00',
-            '4.00', '4.50', '5.00', '5.80', '6.00',
-            '6.30', '7.00', '7.50', '8.00', '9.00'
+            '0.75', '1.00', '1.50', '2.00', '2.50', '3.00',
+            '3.50', '4.00', '4.50', '5.00', '5.50', '5.80',
+            '6.00', '6.30', '6.50', '7.00', '7.30', '7.50',
+            '8.00', '8.80', '9.00', '10.00'
         ]
         font = QtGui.QFont('Consolas', 16, 4)
         self.cb.setFont(font)
@@ -41,6 +42,7 @@ class TaskTime(QtWidgets.QGroupBox):
             )
         )
         self.cb.addItems(self.cb_values)
+        self.cb.setCurrentIndex(1)
         self.cb.editTextChanged[str].connect(self.__set_value)
         self.cb.setSizeAdjustPolicy(QtWidgets.QComboBox.AdjustToContents)
         self.cb.setInsertPolicy(QtWidgets.QComboBox.InsertAtTop)
