@@ -62,6 +62,7 @@ class Login(QObject):
             self.cb.setText(passwd)
             ag.leftClick(518, 228)
             ag.hotkey('ctrl', 'shift', 'v', interval=0.25)
+            self.cb.setText('')
             point = ag.locateCenterOnScreen(self.login_btn,
                                             confidence=self.conf)
             if point is not None:
