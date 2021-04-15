@@ -39,7 +39,7 @@ class AvailabilityCheck(QtWidgets.QGroupBox):
         self.pbar.setMaximumHeight(16)
         font = QtGui.QFont("Consolas", 16, 50)
         self.pbar.setFont(font)
-        self.pbar.setRange(0, 10)
+        self.pbar.setRange(0, 4)
 
         self.init_ui()
         self.init_connections()
@@ -89,7 +89,7 @@ class BrowserScreening(QtCore.QObject):
         super(BrowserScreening, self).__init__()
         self.textEngine = TextToSpeech()
         self.count = 0
-        self.rescan = 10
+        self.rescan = 4
         self.monitoring = True
 
     def timerEvent(self, tme):
